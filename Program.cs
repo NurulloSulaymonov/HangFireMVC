@@ -1,15 +1,18 @@
 using Hangfire;
 using Hangfire.Storage.SQLite;
+using HangfireMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IJobTestService, JobTestService>();
+//var connectionString = builder.Configuration.GetConnectionString("SqliteConnectionString");
 builder.Services.AddHangfire(x =>
 {
     x.UseSimpleAssemblyNameTypeSerializer();
     x.UseRecommendedSerializerSettings();
-    x.UseSQLiteStorage(builder.Configuration.GetConnectionString("SqliteConnectionString"));
+    x.UseSQLiteStorage("Jobs.db");
 });
 
 builder.Services.AddHangfireServer();

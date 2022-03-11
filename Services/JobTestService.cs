@@ -10,7 +10,7 @@ namespace HangfireMVC.Services
         }
         public void ReccuringJob()
         {
-            Debug.WriteLine("Hello from a Scheduled job!");
+            Debug.WriteLine("Powerful job every 5 minutes");
         }
         public void DelayedJob()
         {
